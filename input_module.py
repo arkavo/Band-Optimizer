@@ -62,6 +62,13 @@ def SCF_INPUT(upf, latt_k, ecut, k_pts):
     
     cmd = ESPRESSO_path + " < " + fname + " > " + oname
     os.system(cmd)
+    
+    cmd2 = "grep ! " + oname
+    a = os.popen(cmd2).read()
+    a = a.split(" ")
+    
+    #print(a)
+    print(element,latt_k,ecut,k_pts, a[-2])
 
 
 SCF_INPUT(upf, 11, 12, 4)
