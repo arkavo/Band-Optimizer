@@ -1,10 +1,12 @@
 import subprocess as sp
 import os
 import json
+import numpy as np
 
 prefix = ""
 raw_input_directory = "./Raw_Inputs/"
 directory = "./Raw_data/"
+cwd = os.getcwd()
 #upf = "C.pbe-n-rrkjus_psl.1.0.0.UPF"
 upf = "Sn.pbe-dn-rrkjus_psl.1.0.0.UPF"
 element = "\'"+upf.split(".")[0]+"\'"
@@ -22,7 +24,11 @@ for elem in table['elements']:
 # default
 ESPRESSO_path = "pw.x"
 
-
+def clean():
+    os.chdir(path=directory)
+    os.system("rm -rf *")
+    os.chdir(path=cwd)
+    
 def SCF_INPUT(upf, latt_k, ecut, k_pts):
     
     element = upf.split(".")[0]
@@ -68,11 +74,17 @@ def SCF_INPUT(upf, latt_k, ecut, k_pts):
     a = a.split(" ")
     
     #print(a)
-    print(element,latt_k,ecut,k_pts, a[-2])
+    #print(element,latt_k,ecut,k_pts, a[-2])
+    return [float(latt_k), float(ecut), float(k_pts), float(a[-2])]
 
-
-SCF_INPUT(upf, 11, 12, 4)
-#os.system("rm *.in *.out")
-#os.system(["cd ./Raw_data", "rm -rf *"])
+data = np.array([])
+for k_points in range(4,11):
+    #SCF_INPUT(upf, 2.0, 20, k_points)
+    data = np.append(data, SCF_INPUT(upf, 10.0, 20, k_points))
+    print(f"K_POINTS: {k_points} = DONE")
+os.system("rm *.in *.out")
+data = data.reshape(-1,4)
+print(data)
+clean()
 
 
