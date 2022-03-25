@@ -5,7 +5,8 @@ import json
 prefix = ""
 raw_input_directory = "./Raw_Inputs/"
 directory = "./Raw_data/"
-upf = "C.pbe-n-rrkjus_psl.1.0.0.UPF"
+#upf = "C.pbe-n-rrkjus_psl.1.0.0.UPF"
+upf = "Sn.pbe-dn-rrkjus_psl.1.0.0.UPF"
 element = "\'"+upf.split(".")[0]+"\'"
 mass = 0
 table = json.loads(open('Table.json').read())
