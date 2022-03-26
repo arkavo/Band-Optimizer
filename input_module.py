@@ -86,7 +86,7 @@ def SCF_INPUT(upf, latt_k, ecut, k_pts):
 
 
 
-def k_pt_opt(lower_lt=8, upper_lt=9):
+def k_pt_opt(lower_lt=8, upper_lt=10):
     data = np.array([])
     
     for k_points in range(lower_lt, upper_lt):
@@ -110,7 +110,7 @@ def k_pt_opt(lower_lt=8, upper_lt=9):
 
 res_k_pt = k_pt_opt()
 
-def ecut_opt(lower_ecut=30, upper_ecut=120):
+def ecut_opt(lower_ecut=10, upper_ecut=120):
     data = np.array([0,lower_ecut,res_k_pt,0])
     ec_prev = 0
     for ecut in range(lower_ecut, upper_ecut, 10):
@@ -166,8 +166,11 @@ def latt_opt(lower_lt=1, upper_lt=10,LEVEL=3):
     plt.savefig(name + " lattice.png")
     return latt_min
 
-res_latt = latt_opt(lower_lt=5, upper_lt=19, LEVEL=3)
-        
+res_latt = latt_opt(lower_lt=11, upper_lt=15, LEVEL=3)
+
+
 clean()
+#print("Create final .in file with optimized parameters")
+#SCF_INPUT(upf, res_latt, res_ecut, res_k_pt)
 
 
