@@ -1,0 +1,24 @@
+    &control
+        calculation = 'scf',
+        restart_mode = 'from_scratch',
+        pseudo_dir = './Raw_Inputs/',
+        outdir = './Raw_data/',
+        prefix = 'Ge'
+    /
+    &system    
+        ibrav=2, celldm(1)=11.12, nat=2, ntyp=1,
+        ecutwfc =50.0
+    /
+    &electrons
+        conv_thr =  1.0d-8
+        mixing_beta = 0.7
+        diagonalization = 'david'
+    /
+    
+    ATOMIC_SPECIES
+    Ge   72.6308   Ge.pbe-dn-kjpaw_psl.1.0.0.UPF 
+    ATOMIC_POSITIONS
+    Ge  0.00 0.00 0.00
+    Ge  0.25 0.25 0.25
+    K_POINTS  {automatic}
+    24 24 24 0 0 0
