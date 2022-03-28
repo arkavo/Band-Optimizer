@@ -1,0 +1,6 @@
+    &BANDS
+        prefix='Ge'
+        outdir="./Raw_data/"
+        filband="BandX.dat"
+    /
+    
