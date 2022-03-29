@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 
 #===============================================================================
 # Change whatever you want here
-
+# Directories, don't change unnecessarily
 raw_input_directory = "./Raw_Inputs/"
 raw_data_directory = "./Raw_data/"
 raw_output_directory = "./Raw_Outputs/"
@@ -25,12 +25,14 @@ raw_output_directory = "./Raw_Outputs/"
 
 # Sn = 4 15 10 120 5. 15. 3
 # C  = 4 32 10 120 4. 20. 3
+# Ge = 4 32 10 120 4. 20. 3
 
 # Change this to your UPF file
 
 # upf = "Sn.pbe-dn-rrkjus_psl.1.0.0.UPF"
 # upf = "C.pbe-n-rrkjus_psl.1.0.0.UPF"
 upf = "Ge.pbe-dn-kjpaw_psl.1.0.0.UPF"
+
 # Set K points limits (integers ONLY)
 K_POINT_LOWER_LIMIT = 4
 K_POINT_UPPER_LIMIT = 32
@@ -42,6 +44,8 @@ LATT_K_LOWER_LIMIT = 4.
 LATT_K_UPPER_LIMIT = 20.
 # Set accuracy level
 ACCURACY_LEVEL = 3
+# Clean Flag
+CLEAN_FLAG = False
 # Device specific
 # ESPRESSO_path = "~/espresso-5.0.2/build_ompi/bin/"
 # default
@@ -53,6 +57,8 @@ cl_ele = upf.split(".")[0]
 element = "\'"+upf.split(".")[0]+"\'"
 mass = 0
 table = json.loads(open('Table.json').read())
+
+# Element finder from a periodic table json
 for elem in table['elements']:
     if str(elem['symbol']).lower() == cl_ele.lower():
         name = elem['name']
@@ -64,6 +70,7 @@ for elem in table['elements']:
         print("\n________________________________________________________________________________\n\n")
         break
 
+# This function is used to clean the raw data directory as well as the default directory
 def clean():
     print("Cleaning... in/out files")
     os.system("rm *.in *.out")
@@ -73,7 +80,8 @@ def clean():
     os.system("rm -rf *")
     print("Clean complete\n")
     os.chdir(path=cwd)
-    
+
+# This function is used to create the .in/.out files for the calculation
 def SCF_INPUT(upf, latt_k, ecut, k_pts):
     
     element = upf.split(".")[0]
@@ -117,11 +125,12 @@ def SCF_INPUT(upf, latt_k, ecut, k_pts):
     cmd2 = "grep ! " + oname
     a = os.popen(cmd2).read()
     a = a.split(" ")
-    
+    # return in format latt_k, ecut, k_pts, energy
+    # note that this will give an error in case it encounters absurd values.
     return [float(latt_k), float(ecut), float(k_pts), float(a[-2])]
 
 
-
+# K Point optimizer
 def k_pt_opt(lower_lt=K_POINT_LOWER_LIMIT, upper_lt=K_POINT_UPPER_LIMIT):
     data = np.array([])
     
@@ -148,7 +157,7 @@ def k_pt_opt(lower_lt=K_POINT_LOWER_LIMIT, upper_lt=K_POINT_UPPER_LIMIT):
     return k_point_min
 
 
-
+# ecutwfc optimizer
 def ecut_opt(lower_ecut=ECUT_LOWER_LIMIT, upper_ecut=ECUT_UPPER_LIMIT):
     data = np.array([0,lower_ecut,res_k_pt,0])
     ec_prev = 0
@@ -183,7 +192,7 @@ def ecut_opt(lower_ecut=ECUT_LOWER_LIMIT, upper_ecut=ECUT_UPPER_LIMIT):
     return ecut_min
 
 
-
+# lattice parameter optimizer
 def latt_opt(lower_lt=LATT_K_LOWER_LIMIT, upper_lt=LATT_K_UPPER_LIMIT,LEVEL=ACCURACY_LEVEL):
     #data = np.array([])
     fig = plt.figure(figsize=((LEVEL+1)*10,10))
@@ -214,16 +223,21 @@ def latt_opt(lower_lt=LATT_K_LOWER_LIMIT, upper_lt=LATT_K_UPPER_LIMIT,LEVEL=ACCU
     print("\nData written to csv\n")
     return latt_min
 
+# Optimize all parameters
 res_k_pt = k_pt_opt()
 res_ecut = ecut_opt()
 res_latt = latt_opt()
 
 print("\nCreate final .in file with optimized parameters\n")
+# Create final .in file with optimized parameters
 SCF_INPUT(upf, res_latt, res_ecut, res_k_pt)
 fname = element + "_" + str(res_latt) + "_" + str(res_ecut) + "_" + str(res_k_pt) + "_" + "scf.in"
+# Move final .in file to output directory
 cmd2 = "mv " + fname + " " + raw_output_directory
 os.system(cmd2)
 print("Final .in file created with optimized parameters\n")
-
-clean()
-
+# In some cases (for band structure calculation for ex, we need the .save folder as well as the .xml file)
+# In those cases, leave CLEAN_FLAG = False
+# If you want to cleanup the .save folder, set CLEAN_FLAG = True
+if CLEAN_FLAG:
+    clean()

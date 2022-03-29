@@ -4,17 +4,33 @@ import pandas as pd
 import json
 import matplotlib.pyplot as plt
 
-upf = "Ge.pbe-dn-kjpaw_psl.1.0.0.UPF"
-file = "Ge_11.12_50.0_24_scf.in"
+#######################################
+# Change what you want to do here
+
+# UPF file and file path
+
+#upf = "Ge.pbe-dn-kjpaw_psl.1.0.0.UPF"
+#upf = "C.pbe-n-rrkjus_psl.1.0.0.UPF"
+upf = "Sn.pbe-dn-rrkjus_psl.1.0.0.UPF"
+
+#file = "Ge_11.12_50.0_24_scf.in"
+#file = "C_7.12_20.0_23_scf.in"
+file = "Sn_12.56_50.0_9_scf.in"
+
 ESPRESSO_path = "pw.x"
 BANDS_path = "bands.x"
 raw_data_directory = "Raw_data"
+
+CLEAN_FLAG = False
+# Don't change anything below this line
+#######################################
+
 cwd = os.getcwd()
 cl_ele = upf.split(".")[0]
 element = "\'"+upf.split(".")[0]+"\'"
 mass = 0
 table = json.loads(open('Table.json').read())
-
+# Element finder function
 for elem in table['elements']:
     if str(elem['symbol']).lower() == cl_ele.lower():
         name = elem['name']
@@ -25,14 +41,14 @@ for elem in table['elements']:
         print(f"Shells: {ec}")
         print("\n________________________________________________________________________________\n\n")
         break
-
+# File parser function
 def READER(file):
     opt_pts = file.split("_")
     latt_k = float(opt_pts[1])
     ecut = float(opt_pts[2])
     k_pts = int(opt_pts[3])
     return latt_k, ecut, k_pts
-
+# Cleaner function
 def clean():
     print("Cleaning... in/out files")
     os.system("rm *.in *.out")
@@ -44,7 +60,7 @@ def clean():
     os.chdir(path=cwd)
 
 
-
+# Function to create the .scf.in file
 def SCF_INPUT(upf, latt_k, ecut, k_pts):
 
     element = upf.split(".")[0]
@@ -95,7 +111,7 @@ def SCF_INPUT(upf, latt_k, ecut, k_pts):
 
 
 
-
+# Function to create the .band.in/out files
 def BAND_INPUT(upf, latt_k, ecut, k_pts):
     element = upf.split(".")[0]
     fname = element + "_" + str(latt_k) + "_" + str(ecut) + "_" + str(k_pts) + "_band.in"
@@ -159,13 +175,20 @@ def BAND_OUTPUT(oname):
     os.system(cmd)
     print("Band output file created")
     return oname
+
 dataline = READER(file)
 print(dataline)
+
 latt_k = dataline[0]
 ecut = dataline[1]
 k_pts = dataline[2]
-# SCF_INPUT(upf, latt_k, ecut, k_pts)
+
+SCF_INPUT(upf, latt_k, ecut, k_pts)
 ONAME = BAND_INPUT(upf, latt_k, ecut, k_pts)
 BAND_OUTPUT(ONAME)
 
-clean()
+# Don't cleanup if you need the .save and .xml files
+# otherwise, set the FLAG to true at the top
+
+if CLEAN_FLAG:
+    clean()
