@@ -8,6 +8,7 @@ upf = "Ge.pbe-dn-kjpaw_psl.1.0.0.UPF"
 file = "Ge_11.12_50.0_24_scf.in"
 ESPRESSO_path = "pw.x"
 BANDS_path = "bands.x"
+raw_data_directory = "Raw_data"
 cwd = os.getcwd()
 cl_ele = upf.split(".")[0]
 element = "\'"+upf.split(".")[0]+"\'"
@@ -112,7 +113,7 @@ def BAND_INPUT(upf, latt_k, ecut, k_pts):
     /
     &system
         ibrav=2, celldm(1) ={latt_k}, nat=2, ntyp=1,
-        ecutwfc={ecut}, nbnd=4
+        ecutwfc={ecut}
     /
     &electrons
         conv_thr =  1.0d-8
@@ -143,11 +144,12 @@ def BAND_OUTPUT(oname):
     element = upf.split(".")[0]
     fname = element + "_" + str(latt_k) + "_" + str(ecut) + "_" + str(k_pts) + "_bandX.in"
     oname = element + "_" + str(latt_k) + "_" + str(ecut) + "_" + str(k_pts) + "_bandX.out"
+    filband = element + "_bandx.dat"
     blocktext = f"""\
     &BANDS
         prefix='{element}'
-        outdir="./Raw_data/"
-        filband="BandX.dat"
+        outdir='./Raw_data/'
+        filband='{filband}'
     /
     """
     infile = open(fname, "w")
@@ -166,4 +168,4 @@ k_pts = dataline[2]
 ONAME = BAND_INPUT(upf, latt_k, ecut, k_pts)
 BAND_OUTPUT(ONAME)
 
-#clean()
+clean()

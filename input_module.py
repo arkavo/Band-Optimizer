@@ -210,7 +210,7 @@ def latt_opt(lower_lt=LATT_K_LOWER_LIMIT, upper_lt=LATT_K_UPPER_LIMIT,LEVEL=ACCU
     
     LATT = pd.DataFrame(data, columns=["Lattice Parameter", "Ecutwfc", "K points", "Energy"])
     LATT = LATT[["Lattice Parameter", "Energy"]]
-    LATT.to_csv(raw_output_directory + name + "_lattice.csv",index=False,sep=" ",header=False)
+    LATT.to_csv(raw_output_directory + name + "_lattice_level_{level}.csv",index=False,sep=" ",header=False)
     print("\nData written to csv\n")
     return latt_min
 
