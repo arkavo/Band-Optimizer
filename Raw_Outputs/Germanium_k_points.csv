@@ -114,7 +114,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Thu Mar 31 02:04:15 2022"
+@timestamp def "Thu Mar 31 02:07:01 2022"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -161,11 +161,11 @@
 @g0 fixedpoint format general general
 @g0 fixedpoint prec 6, 6
 @with g0
-@    world 7.1, -24.77, 7.28, -24.72
+@    world 0, -626.42, 32, -626.27
 @    stack world 0, 0, 0, 0
 @    znorm 1
 @    view 0.115909, 0.153939, 0.888636, 0.872319
-@    title "Carbon lattice parameter (lv2)"
+@    title "Germanium K points"
 @    title font 0
 @    title size 1.500000
 @    title color 1
@@ -184,7 +184,7 @@
 @    xaxis  bar color 1
 @    xaxis  bar linestyle 1
 @    xaxis  bar linewidth 1.0
-@    xaxis  label "Lattice parameter"
+@    xaxis  label "K Points"
 @    xaxis  label layout para
 @    xaxis  label place auto
 @    xaxis  label char size 1.000000
@@ -192,7 +192,7 @@
 @    xaxis  label color 1
 @    xaxis  label place normal
 @    xaxis  tick on
-@    xaxis  tick major 0.05
+@    xaxis  tick major 2
 @    xaxis  tick minor ticks 1
 @    xaxis  tick default 6
 @    xaxis  tick place rounded true
@@ -243,7 +243,7 @@
 @    yaxis  label color 1
 @    yaxis  label place normal
 @    yaxis  tick on
-@    yaxis  tick major 0.01
+@    yaxis  tick major 0.02
 @    yaxis  tick minor ticks 1
 @    yaxis  tick default 6
 @    yaxis  tick place rounded true
@@ -351,18 +351,36 @@
 @    s0 errorbar riser linestyle 1
 @    s0 errorbar riser clip off
 @    s0 errorbar riser clip length 0.100000
-@    s0 comment "Carbon_lattice.csv"
+@    s0 comment "Germanium_k_points.csv"
 @    s0 legend  ""
 @target G0.S0
 @type xy
-7.1 -24.760106
-7.12 -24.759161
-7.14 -24.758007
-7.16 -24.756755
-7.18 -24.74628
-7.2 -24.744914
-7.22 -24.743223
-7.24 -24.741634
-7.26 -24.739825
-7.28 -24.72095
+4 -626.27949
+5 -626.38813
+6 -626.36917
+7 -626.34411
+8 -626.40457
+9 -626.40691
+10 -626.40352
+11 -626.40077
+12 -626.39541
+13 -626.39849
+14 -626.40532
+15 -626.41089
+16 -626.40382
+17 -626.40974
+18 -626.40746
+19 -626.40731
+20 -626.41159
+21 -626.40859
+22 -626.40899
+23 -626.41182
+24 -626.41199
+25 -626.40753
+26 -626.40739
+27 -626.40827
+28 -626.40745
+29 -626.40912
+30 -626.40807
+31 -626.40856
 &

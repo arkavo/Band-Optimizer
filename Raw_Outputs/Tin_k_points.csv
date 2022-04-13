@@ -114,7 +114,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Thu Mar 31 02:04:15 2022"
+@timestamp def "Thu Mar 31 02:19:32 2022"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -161,11 +161,11 @@
 @g0 fixedpoint format general general
 @g0 fixedpoint prec 6, 6
 @with g0
-@    world 7.1, -24.77, 7.28, -24.72
+@    world 4, -307, 16, -306.6
 @    stack world 0, 0, 0, 0
 @    znorm 1
 @    view 0.115909, 0.153939, 0.888636, 0.872319
-@    title "Carbon lattice parameter (lv2)"
+@    title "Tin K points"
 @    title font 0
 @    title size 1.500000
 @    title color 1
@@ -184,7 +184,7 @@
 @    xaxis  bar color 1
 @    xaxis  bar linestyle 1
 @    xaxis  bar linewidth 1.0
-@    xaxis  label "Lattice parameter"
+@    xaxis  label "K points"
 @    xaxis  label layout para
 @    xaxis  label place auto
 @    xaxis  label char size 1.000000
@@ -192,7 +192,7 @@
 @    xaxis  label color 1
 @    xaxis  label place normal
 @    xaxis  tick on
-@    xaxis  tick major 0.05
+@    xaxis  tick major 2
 @    xaxis  tick minor ticks 1
 @    xaxis  tick default 6
 @    xaxis  tick place rounded true
@@ -243,7 +243,7 @@
 @    yaxis  label color 1
 @    yaxis  label place normal
 @    yaxis  tick on
-@    yaxis  tick major 0.01
+@    yaxis  tick major 0.1
 @    yaxis  tick minor ticks 1
 @    yaxis  tick default 6
 @    yaxis  tick place rounded true
@@ -351,18 +351,19 @@
 @    s0 errorbar riser linestyle 1
 @    s0 errorbar riser clip off
 @    s0 errorbar riser clip length 0.100000
-@    s0 comment "Carbon_lattice.csv"
+@    s0 comment "Tin_k_points.csv"
 @    s0 legend  ""
 @target G0.S0
 @type xy
-7.1 -24.760106
-7.12 -24.759161
-7.14 -24.758007
-7.16 -24.756755
-7.18 -24.74628
-7.2 -24.744914
-7.22 -24.743223
-7.24 -24.741634
-7.26 -24.739825
-7.28 -24.72095
+4 -306.6704
+5 -306.95019
+6 -306.89323
+7 -306.81157
+8 -306.97504
+9 -306.98449
+10 -306.97156
+11 -306.96363
+12 -306.94954
+13 -306.95818
+14 -306.97682
 &

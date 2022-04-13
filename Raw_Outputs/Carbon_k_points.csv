@@ -1,7 +1,7 @@
 # Grace project file
 #
 @version 50125
-@page size 457, 469
+@page size 522, 469
 @page scroll 5%
 @page inout 5%
 @link page off
@@ -114,7 +114,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Thu Mar 31 02:04:15 2022"
+@timestamp def "Thu Mar 31 01:59:56 2022"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -161,11 +161,11 @@
 @g0 fixedpoint format general general
 @g0 fixedpoint prec 6, 6
 @with g0
-@    world 7.1, -24.77, 7.28, -24.72
+@    world 3, -24.21, 32, -24.18
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view 0.115909, 0.153939, 0.888636, 0.872319
-@    title "Carbon lattice parameter (lv2)"
+@    view 0.129008, 0.150000, 0.989058, 0.850000
+@    title "Carbon K points"
 @    title font 0
 @    title size 1.500000
 @    title color 1
@@ -184,7 +184,7 @@
 @    xaxis  bar color 1
 @    xaxis  bar linestyle 1
 @    xaxis  bar linewidth 1.0
-@    xaxis  label "Lattice parameter"
+@    xaxis  label "K-points"
 @    xaxis  label layout para
 @    xaxis  label place auto
 @    xaxis  label char size 1.000000
@@ -192,7 +192,7 @@
 @    xaxis  label color 1
 @    xaxis  label place normal
 @    xaxis  tick on
-@    xaxis  tick major 0.05
+@    xaxis  tick major 2
 @    xaxis  tick minor ticks 1
 @    xaxis  tick default 6
 @    xaxis  tick place rounded true
@@ -243,7 +243,7 @@
 @    yaxis  label color 1
 @    yaxis  label place normal
 @    yaxis  tick on
-@    yaxis  tick major 0.01
+@    yaxis  tick major 0.005
 @    yaxis  tick minor ticks 1
 @    yaxis  tick default 6
 @    yaxis  tick place rounded true
@@ -283,7 +283,7 @@
 @    altyaxis  off
 @    legend on
 @    legend loctype view
-@    legend 0.656818182, 0.821006565
+@    legend 0.731042838, 0.8
 @    legend box color 1
 @    legend box pattern 1
 @    legend box linewidth 1.0
@@ -351,18 +351,36 @@
 @    s0 errorbar riser linestyle 1
 @    s0 errorbar riser clip off
 @    s0 errorbar riser clip length 0.100000
-@    s0 comment "Carbon_lattice.csv"
+@    s0 comment "Carbon_k_points.csv"
 @    s0 legend  ""
 @target G0.S0
 @type xy
-7.1 -24.760106
-7.12 -24.759161
-7.14 -24.758007
-7.16 -24.756755
-7.18 -24.74628
-7.2 -24.744914
-7.22 -24.743223
-7.24 -24.741634
-7.26 -24.739825
-7.28 -24.72095
+4 -24.187244
+5 -24.19585
+6 -24.199096
+7 -24.200184
+8 -24.201519
+9 -24.20203
+10 -24.202255
+11 -24.202344
+12 -24.202413
+13 -24.202625
+14 -24.202738
+15 -24.202833
+16 -24.202796
+17 -24.202872
+18 -24.202879
+19 -24.202884
+20 -24.202913
+21 -24.202893
+22 -24.202893
+23 -24.202931
+24 -24.202929
+25 -24.202906
+26 -24.202883
+27 -24.202889
+28 -24.202884
+29 -24.202891
+30 -24.202871
+31 -24.202897
 &
